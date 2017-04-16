@@ -24,7 +24,7 @@ function parse_request(income, investment, body) {
 function root(router) {
   router.route('/investments/:investment_id/income')
     .get(function(req, res) {
-        Income.find({investment: req.params.investment_id}, function(err, incomes) {
+        Income.find({investment: req.params.investment_id}).sort('-date').exec(function(err, incomes) {
           if (err)
             res.send(err);
 
