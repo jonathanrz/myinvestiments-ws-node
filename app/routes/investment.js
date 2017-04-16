@@ -11,12 +11,16 @@ function parse_request(investment, body) {
 function root(router) {
   router.route('/investments')
     .get(function(req, res) {
+        console.log("1");
         Investment.find(function(err, investments) {
+          console.log("3");
           if (err)
             res.send(err);
 
+          console.log("4");
           res.json(investments);
         });
+        console.log("2");
       })
     .post(function(req, res) {
         var investment = new Investment();
