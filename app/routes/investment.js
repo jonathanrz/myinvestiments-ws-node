@@ -1,11 +1,8 @@
 var Investment = require('../models/investment');
-var mongoose   = require('mongoose');
 
 var exports = module.exports = {};
 
-mongoose.connect('mongodb://localhost:27017/myinvestments-db');
-
-exports.map_routes = function(router) {
+function root(router) {
   router.route('/investments')
     .get(function(req, res) {
         Investment.find(function(err, investments) {
@@ -26,7 +23,9 @@ exports.map_routes = function(router) {
           res.json({ message: 'Investment created!' });
         });
       });
+}
 
+function model(router) {
   router.route('/investments/:investment_id')
     .get(function(req, res) {
         Investment.findById(req.params.investment_id, function(err, investment) {
@@ -58,4 +57,9 @@ exports.map_routes = function(router) {
           res.json({ message: 'Successfully deleted' });
         });
     });
+}
+
+exports.map_routes = function(router) {
+  root(router);
+  model(router);
 }

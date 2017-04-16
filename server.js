@@ -1,5 +1,6 @@
-var express    = require('express');
-var bodyParser = require('body-parser');
+var express    = require('express')
+var bodyParser = require('body-parser')
+var database   = require('./app/database/db')
 var investment = require('./app/routes/investment')
 
 var app = express();
