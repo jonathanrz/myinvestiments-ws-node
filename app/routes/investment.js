@@ -38,11 +38,11 @@ function root(router) {
         }
         parse_request(investment, req.body);
 
-        investment.save(function(err) {
+        investment.save(function(err, investment) {
           if (err)
             res.send(err);
 
-          res.json({ message: 'Investment created!' });
+          res.json(investment);
         });
       });
 }
@@ -68,11 +68,11 @@ function model(router) {
           }
           parse_request(investment, req.body);
 
-          investment.save(function(err) {
+          investment.save(function(err, investment) {
             if (err)
               res.send(err);
 
-            res.json({ message: 'Invesment updated!' });
+            res.json(investment);
           });
         });
       })
@@ -81,7 +81,7 @@ function model(router) {
           if (err)
             res.send(err);
 
-          res.json({ message: 'Successfully deleted' });
+          res.json(investment);
         });
     });
 }

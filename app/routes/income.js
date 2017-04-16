@@ -40,7 +40,7 @@ function root(router) {
         }
         parse_request(income, req.params.investment_id, req.body);
 
-        income.save(function(err) {
+        income.save(function(err, income) {
           if (err)
             res.send(err);
 
@@ -70,7 +70,7 @@ function model(router) {
           }
           parse_request(income, req.params.investment_id, req.body);
 
-          income.save(function(err) {
+          income.save(function(err, income) {
             if (err)
               res.send(err);
 
