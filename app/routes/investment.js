@@ -2,6 +2,12 @@ var Investment = require('../models/investment');
 
 var exports = module.exports = {};
 
+function parse_request(investment, body) {
+  investment.name = body.name;
+  investment.type = body.type;
+  investment.holder = body.holder;
+}
+
 function root(router) {
   router.route('/investments')
     .get(function(req, res) {
@@ -14,7 +20,7 @@ function root(router) {
       })
     .post(function(req, res) {
         var investment = new Investment();
-        investment.name = req.body.name;
+        parse_request(investment, req.body);
 
         investment.save(function(err) {
           if (err)
@@ -39,7 +45,7 @@ function model(router) {
           if (err)
             res.send(err);
 
-          investment.name = req.body.name;
+          parse_request(investment, req.body);
 
           investment.save(function(err) {
             if (err)
