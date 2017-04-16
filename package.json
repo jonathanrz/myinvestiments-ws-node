@@ -8,6 +8,7 @@
       "express": "4.15.2",
       "mongoose": "4.9.4",
       "body-parser": "1.17.1",
-      "helmet": "3.5.0"
+      "helmet": "3.5.0",
+      "moment": "2.18.1"
     }
 }

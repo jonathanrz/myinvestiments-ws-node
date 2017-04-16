@@ -3,6 +3,7 @@ var bodyParser = require('body-parser')
 var helmet     = require('helmet')
 var database   = require('./app/database/db')
 var investment = require('./app/routes/investment')
+var income     = require('./app/routes/income')
 
 var app = express();
 
@@ -27,6 +28,7 @@ router.get('/', function(req, res) {
 app.use('/api', router);
 
 investment.map_routes(router);
+income.map_routes(router);
 
 app.listen(app.get('port'), function() {
   console.log("app running on port " + app.get('port'));
