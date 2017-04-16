@@ -14,7 +14,7 @@ function generate_report(investment, res) {
         if(lastValue != 0) {
           month = {};
           month["value"] = income.value - lastValue;
-          month["perc"] = income.value / lastValue - 1;
+          month["perc"] = (income.value / lastValue - 1) * 100;
           report["incomes"][moment(income.date).format("MM/YYYY")] = month;
         }
         lastValue = income.value;
