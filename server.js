@@ -13,10 +13,10 @@ mongoose.connect('mongodb://localhost:27017/myinvestments-db');
 var port = process.env.PORT || 8080;
 var router = express.Router();
 
-// router.use(function(req, res, next) {
-//     console.log('Something is happening.');
-//     next();
-// });
+router.use(function(req, res, next) {
+    console.log('Something is happening.');
+    next();
+});
 
 router.get('/', function(req, res) {
   res.json({ message: 'Everything up' });
