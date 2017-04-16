@@ -10,7 +10,7 @@ app.use(helmet())
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-var port = process.env.PORT || 8080;
+app.set('port', (process.env.PORT || 8080));
 var router = express.Router();
 
 router.use(function(req, res, next) {
@@ -28,6 +28,6 @@ app.use('/api', router);
 
 investment.map_routes(router);
 
-app.listen(port, function() {
-  console.log("app running on port " + port);
+app.listen(app.get('port'), function() {
+  console.log("app running on port " + app.get('port'));
 });
