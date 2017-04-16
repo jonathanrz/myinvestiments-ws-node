@@ -17,7 +17,7 @@ router.use(function(req, res, next) {
   if(req.headers["auth-token"] === process.env["MYINVESTMENTS_AUTH_TOKEN"])
     next();
   else
-    res.send(401, {message: "Invalid auth token"});
+    res.status(401).send({message: "Invalid auth token"});
 });
 
 router.get('/', function(req, res) {
