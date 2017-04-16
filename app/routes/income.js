@@ -50,7 +50,7 @@ function root(router) {
 }
 
 function model(router) {
-  router.route('/investments/:investment_id/income/income_id')
+  router.route('/investments/:investment_id/income/:income_id')
     .get(function(req, res) {
         Income.findById(req.params.income_id, function(err, income) {
           if (err)
