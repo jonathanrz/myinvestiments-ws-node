@@ -6,7 +6,7 @@
     },
     "dependencies": {
       "express": "4.15.2",
-      "mongoose": "~3.6.13",
+      "mongoose": "4.9.4",
       "body-parser": "1.17.1",
       "helmet": "3.5.0"
     }
