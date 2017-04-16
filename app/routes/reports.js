@@ -12,7 +12,10 @@ function generate_report(investment, res) {
       var lastValue = 0;
       incomes.forEach(function(income) {
         if(lastValue != 0) {
-          report["incomes"][moment(income.date).format("MM/YYYY")] = income.value - lastValue;
+          month = {};
+          month["value"] = income.value - lastValue;
+          month["perc"] = income.value / lastValue - 1;
+          report["incomes"][moment(income.date).format("MM/YYYY")] = month;
         }
         lastValue = income.value;
       });
