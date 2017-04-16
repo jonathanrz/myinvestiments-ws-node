@@ -1,10 +1,12 @@
 var express    = require('express')
 var bodyParser = require('body-parser')
+var helmet     = require('helmet')
 var database   = require('./app/database/db')
 var investment = require('./app/routes/investment')
 
 var app = express();
 
+app.use(helmet())
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
