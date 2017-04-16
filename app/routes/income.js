@@ -59,7 +59,7 @@ function model(router) {
         });
       })
     .put(function(req, res) {
-        Investment.findById(req.params.income_id, function(err, income) {
+        Income.findById(req.params.income_id, function(err, income) {
           if (err)
             res.send(err);
 
@@ -79,7 +79,7 @@ function model(router) {
         });
       })
     .delete(function(req, res) {
-        Investment.remove({_id: req.params.income_id}, function(err, income) {
+        Income.remove({_id: req.params.income_id}, function(err, income) {
           if (err)
             res.send(err);
 
