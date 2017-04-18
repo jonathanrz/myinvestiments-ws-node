@@ -38,7 +38,7 @@ function generate_report(investment, res) {
       summary["currentValue"] =  "R$" + lastValue.toFixed(2);
       summary["yield"] =  "R$" + investment_yield.toFixed(2);
       summary["months"] = months;
-      summary["average"] =  =  "R$" + (investment_yield / months;).toFixed(2);
+      summary["average"] = "R$" + (investment_yield / months).toFixed(2);
       report["summary"] = summary;
       res.json(report);
   });
