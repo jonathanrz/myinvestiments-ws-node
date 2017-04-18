@@ -32,8 +32,10 @@ function generate_report(investment, res) {
         lastMonth = income.date;
       });
       investment_yield = (lastValue - firstValue);
-      months = moment(lastMonth).diff(moment(firstMonth));
+      months = moment(lastMonth).diff(moment(firstMonth), 'months', true);
       summary = {};
+      summary["initialValue"] =  "R$" + firstValue.toFixed(2);
+      summary["currentValue"] =  "R$" + lastValue.toFixed(2);
       summary["yield"] =  "R$" + investment_yield.toFixed(2);
       summary["months"] = months;
       summary["average"] = investment_yield / months;
