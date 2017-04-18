@@ -18,7 +18,7 @@ function generate_report(investment, res) {
       var firstMonth;
       var lastMonth;
       incomes.forEach(function(income) {
-        if(firstValue != 0) {
+        if(firstValue == 0) {
           firstValue = income.value;
           firstMonth = income.date;
         }
