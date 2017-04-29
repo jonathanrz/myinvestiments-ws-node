@@ -10,7 +10,9 @@ exports.generate_report = function(res) {
       res.send(err);
 
     report = {}
+    console.log("init");
     investments.forEach(function(investment) {
+      console.log("investment=" + investment.name);
       Income.find({investment: investment.id}).sort('date').exec(function(err, incomes) {
           if (err) {
             res.send(err);
@@ -30,6 +32,7 @@ exports.generate_report = function(res) {
           });
         });
     });
+    console.log("end");
     res.json(report);
   });
 }
