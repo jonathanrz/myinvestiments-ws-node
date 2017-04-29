@@ -25,7 +25,7 @@ function fill_report(investment, res) {
         if(lastValue != 0) {
           month = {};
           month["value"] = "R$" + income.value.toFixed(2);
-          month["yield"] = "R$" + (income.yield(lastValue)).toFixed(2);
+          month["yield"] = "R$" + income.yield(lastValue).toFixed(2);
           month["perc"] = ((income.value / lastValue - 1) * 100).toFixed(2) + "%";
           report["incomes"][moment(income.date).format("MM/YYYY")] = month;
         }
