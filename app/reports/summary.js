@@ -27,7 +27,7 @@ exports.generate_report = function(res) {
             monthData["value"] = value + income.value;
             report[currentMonth] = monthData;
           });
-        }
+        });
     });
     res.json(report);
   });
