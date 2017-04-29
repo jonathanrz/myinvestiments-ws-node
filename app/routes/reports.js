@@ -53,7 +53,10 @@ function root(router) {
 
           generate_report(investment, res);
         });
-      })
+      });
+  router.route('/reports/summary')
+    .get(function(req, res) {
+    });
 }
 
 exports.map_routes = function(router) {
