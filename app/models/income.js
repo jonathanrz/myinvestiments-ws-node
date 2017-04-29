@@ -5,7 +5,8 @@ var IncomeSchema   = new Schema({
     investment: String,
     date: Date,
     quantity: Number,
-    value: Number
+    value: Number,
+    bought: Number
 });
 
 module.exports = mongoose.model('Income', IncomeSchema);
