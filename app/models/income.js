@@ -12,7 +12,7 @@ var incomeSchema = new Schema({
 incomeSchema.methods.yield = function(originalValue) {
   result = this.value - originalValue;
   if(this.bought)
-    result -= this.bought;
+    return result - this.bought;
   return result;
 };
 
