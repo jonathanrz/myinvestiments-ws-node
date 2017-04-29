@@ -11,7 +11,7 @@ exports.generate_report = function(res) {
 
     report = {}
     console.log("init");
-    investments.forEach(function(investment) {
+    investments.forEach(function(investment, index) {
       console.log("investment=" + investment.name);
       Income.find({investment: investment.id}).sort('date').exec(function(err, incomes) {
           if (err) {
@@ -34,9 +34,10 @@ exports.generate_report = function(res) {
             report[currentMonth] = monthData;
             console.log("report=" + JSON.stringify(report));
           });
+          if(index == (investments.length - 1))
+            res.json(report);
         });
     });
     console.log("end");
-    res.json(report);
   });
 }
