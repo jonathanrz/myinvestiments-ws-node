@@ -19,6 +19,7 @@ function parse_request(income, investment, body) {
   income.date = moment(body.date, "MM/YYYY");
   income.quantity = body.quantity;
   income.value = body.value;
+  income.bought = body.bought;
 }
 
 function root(router) {
