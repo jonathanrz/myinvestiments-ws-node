@@ -22,9 +22,9 @@ exports.generate_report = function(res) {
             currentMonth = moment(income.date).format("MM/YYYY");
             console.log("currentMonth=" + currentMonth);
             monthData = report[currentMonth];
-            console.log("monthData1=" + monthData.toString());
             value = 0;
             if(monthData) {
+              console.log("monthData1=" + monthData.toString());
               value = monthData["value"];
             } else {
               monthData = {};
