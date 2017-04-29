@@ -4,15 +4,25 @@ var Income = require('../models/income');
 
 var exports = module.exports = {};
 
+function generateDiffAndRenderData(report, res) {
+  lastMonthValue = 0;
+  report.forEach(function(monthData) {
+    if(lastMonthValue > 0) {
+      monthData["diff"] = "R$" + (monthData["value"] - lastMonthValue).toFixed(2);
+    }
+    lastMonthValue = monthData["value"];
+    monthData["value"] = "R$" + monthData["value"].toFixed(2);
+  });
+  res.json(report);
+}
+
 exports.generate_report = function(res) {
   Investment.find(function(err, investments) {
     if (err)
       res.send(err);
 
     report = {}
-    console.log("init");
     investments.forEach(function(investment, index) {
-      console.log("investment=" + investment.name);
       Income.find({investment: investment.id}).sort('date').exec(function(err, incomes) {
           if (err) {
             res.send(err);
@@ -20,24 +30,19 @@ exports.generate_report = function(res) {
           }
           incomes.forEach(function(income) {
             currentMonth = moment(income.date).format("MM/YYYY");
-            console.log("currentMonth=" + currentMonth);
             monthData = report[currentMonth];
             value = 0;
             if(monthData) {
-              console.log("monthData1=" + JSON.stringify(monthData));
               value = monthData["value"];
             } else {
               monthData = {};
             }
             monthData["value"] = value + income.value;
-            console.log("monthData2=" + JSON.stringify(monthData));
             report[currentMonth] = monthData;
-            console.log("report=" + JSON.stringify(report));
           });
           if(index == (investments.length - 1))
-            res.json(report);
+            generateDiffAndRenderData(report, res);
         });
     });
-    console.log("end");
   });
 }
