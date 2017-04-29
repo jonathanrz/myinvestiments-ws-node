@@ -1,4 +1,5 @@
 var investments = require('../reports/investments');
+var summary = require('../reports/summary');
 
 var exports = module.exports = {};
 
@@ -9,6 +10,7 @@ function root(router) {
     });
   router.route('/reports/summary')
     .get(function(req, res) {
+      summary.generate_report(res);
     });
 }
 
