@@ -6,13 +6,13 @@ var exports = module.exports = {};
 
 function generateDiffAndRenderData(report, res) {
   lastMonthValue = 0;
-  report.forEach(function(monthData) {
+  for(monthData in report) {
     if(lastMonthValue > 0) {
       monthData["diff"] = "R$" + (monthData["value"] - lastMonthValue).toFixed(2);
     }
     lastMonthValue = monthData["value"];
     monthData["value"] = "R$" + monthData["value"].toFixed(2);
-  });
+  }
   res.json(report);
 }
 
