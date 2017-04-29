@@ -6,7 +6,8 @@ var exports = module.exports = {};
 
 function generateDiffAndRenderData(report, res) {
   lastMonthValue = 0;
-  for(monthData in report) {
+  for(month in report) {
+    monthData = report[month];
     if(lastMonthValue > 0) {
       monthData["diff"] = "R$" + (monthData["value"] - lastMonthValue).toFixed(2);
     }
