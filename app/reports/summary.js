@@ -24,15 +24,15 @@ exports.generate_report = function(res) {
             monthData = report[currentMonth];
             value = 0;
             if(monthData) {
-              console.log("monthData1=" + monthData.toString());
+              console.log("monthData1=" + JSON.stringify(monthData));
               value = monthData["value"];
             } else {
               monthData = {};
             }
             monthData["value"] = value + income.value;
-            console.log("monthData2=" + monthData.toString());
+            console.log("monthData2=" + JSON.stringify(monthData));
             report[currentMonth] = monthData;
-            console.log("report=" + report.toString());
+            console.log("report=" + JSON.stringify(report));
           });
         });
     });
