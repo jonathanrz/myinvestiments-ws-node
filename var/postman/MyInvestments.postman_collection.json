@@ -393,7 +393,13 @@
 						},
 						{
 							"key": "value",
-							"value": "275.14",
+							"value": "876.05",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "bought",
+							"value": "0",
 							"type": "text",
 							"enabled": true
 						}
