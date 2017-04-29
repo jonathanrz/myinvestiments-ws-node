@@ -22,7 +22,7 @@ exports.generate_report = function(res) {
             currentMonth = moment(income.date).format("MM/YYYY");
             console.log("currentMonth=" + currentMonth);
             monthData = report[currentMonth];
-            console.log("monthData1=" + monthData);
+            console.log("monthData1=" + monthData.toString());
             value = 0;
             if(monthData) {
               value = monthData["value"];
@@ -30,8 +30,9 @@ exports.generate_report = function(res) {
               monthData = {};
             }
             monthData["value"] = value + income.value;
-            console.log("monthData2=" + monthData);
+            console.log("monthData2=" + monthData.toString());
             report[currentMonth] = monthData;
+            console.log("report=" + report.toString());
           });
         });
     });
