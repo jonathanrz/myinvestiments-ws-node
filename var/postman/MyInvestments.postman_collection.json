@@ -2,7 +2,7 @@
 	"variables": [],
 	"info": {
 		"name": "MyInvestments",
-		"_postman_id": "4e443248-0300-0349-bbe2-b6d7a4411ea9",
+		"_postman_id": "d52aff65-ff06-d5c5-6d8d-3555ed1b7fe6",
 		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
@@ -477,6 +477,26 @@
 			"name": "Generate Summary Report",
 			"request": {
 				"url": "{{myinvestment-url}}/api/reports/summary",
+				"method": "GET",
+				"header": [
+					{
+						"key": "auth-token",
+						"value": "{{MYINVESTMENTS_AUTH_TOKEN}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Generate Holder Report",
+			"request": {
+				"url": "{{myinvestment-url}}/api/reports/holder/<holder_name>",
 				"method": "GET",
 				"header": [
 					{
