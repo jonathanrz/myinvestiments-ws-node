@@ -34,9 +34,8 @@ exports.generate_report = function(holder, res) {
           investmentData["months"] = months;
           investmentData["average"] = "R$" + (investment_yield / months).toFixed(2);
 
-          if(index == (investment.length - 1)) {
+          if(index == (investments.length - 1))
             res.json(report);
-          }
         });
     });
   });
