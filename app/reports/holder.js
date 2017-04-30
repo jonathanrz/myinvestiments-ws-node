@@ -10,11 +10,6 @@ exports.generate_report = function(holder, res) {
       res.send(err);
     report = {}
     investments.forEach(function(investment, index) {
-      typeData = report[investment.type];
-      if(!typeData) {
-        typeData = {};
-        report[investment.type] = typeData;
-      }
       Income.find({investment: investment.id}).sort('date').exec(function(err, incomes) {
           if (err) {
             res.send(err);
@@ -32,7 +27,11 @@ exports.generate_report = function(holder, res) {
           investmentData["yield"] =  "R$" + investment_yield.toFixed(2);
           investmentData["months"] = months;
           investmentData["average"] = "R$" + (investment_yield / months).toFixed(2);
+          typeData = report[investment.type];
+          if(!typeData)
+            typeData = {};
           typeData[investment.name] = investmentData;
+          report[investment.type] = typeData;
 
           if(index == (investments.length - 1))
             res.json(report);
