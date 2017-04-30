@@ -15,8 +15,6 @@ exports.generate_report = function(holder, res) {
         typeData = {};
         report[investment.type] = typeData;
       }
-      investmentData = {};
-      typeData[investment.name] = investmentData;
       Income.find({investment: investment.id}).sort('date').exec(function(err, incomes) {
           if (err) {
             res.send(err);
@@ -28,11 +26,13 @@ exports.generate_report = function(holder, res) {
           var lastValue = incomes[incomes.length - 1].value;
           investment_yield = (lastValue - firstValue);
           months = moment(lastMonth).diff(moment(firstMonth), 'months', true);
+          investmentData = {};
           investmentData["initialValue"] =  "R$" + firstValue.toFixed(2);
           investmentData["currentValue"] =  "R$" + lastValue.toFixed(2);
           investmentData["yield"] =  "R$" + investment_yield.toFixed(2);
           investmentData["months"] = months;
           investmentData["average"] = "R$" + (investment_yield / months).toFixed(2);
+          typeData[investment.name] = investmentData;
 
           if(index == (investments.length - 1))
             res.json(report);
