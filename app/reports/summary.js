@@ -24,7 +24,7 @@ exports.generate_report = function(res) {
 
     report = {}
     investments.forEach(function(investment, index) {
-      Income.find({investment: investment.id}).sort('date').exec(function(err, incomes) {
+      Income.find({investment: investment.id}).exec(function(err, incomes) {
           if (err) {
             res.send(err);
             return;
