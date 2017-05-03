@@ -8,510 +8,766 @@
 	},
 	"item": [
 		{
-			"name": "Get Investments",
-			"request": {
-				"url": "{{myinvestment-url}}/api/investments",
-				"method": "GET",
-				"header": [
-					{
-						"key": "auth-token",
-						"value": "{{MYINVESTMENTS_AUTH_TOKEN}}",
+			"name": "Fees",
+			"description": "",
+			"item": [
+				{
+					"name": "Get Fees",
+					"request": {
+						"url": "{{myinvestment-url}}/api/fees",
+						"method": "GET",
+						"header": [
+							{
+								"key": "auth-token",
+								"value": "{{MYINVESTMENTS_AUTH_TOKEN}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "BRASIL PLURAL YIELD DI",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "type",
+									"value": "Fundo de Investimentos",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "holder",
+									"value": "Easynvest",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
 						"description": ""
 					},
-					{
-						"key": "Content-Type",
-						"value": "application/x-www-form-urlencoded",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "name",
-							"value": "BRASIL PLURAL YIELD DI",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "type",
-							"value": "Fundo de Investimentos",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "holder",
-							"value": "Easynvest",
-							"type": "text",
-							"enabled": true
-						}
-					]
+					"response": []
 				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Create Investment",
-			"request": {
-				"url": "{{myinvestment-url}}/api/investments",
-				"method": "POST",
-				"header": [
-					{
-						"key": "auth-token",
-						"value": "{{MYINVESTMENTS_AUTH_TOKEN}}",
+				{
+					"name": "Create Fee",
+					"request": {
+						"url": "{{myinvestment-url}}/api/fees",
+						"method": "POST",
+						"header": [
+							{
+								"key": "auth-token",
+								"value": "{{MYINVESTMENTS_AUTH_TOKEN}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "date",
+									"value": "DD/MM/YYYY",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "holder",
+									"value": "",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "value\n",
+									"value": "",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
 						"description": ""
 					},
-					{
-						"key": "Content-Type",
-						"value": "application/x-www-form-urlencoded",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "name",
-							"value": "",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "type",
-							"value": "",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "holder",
-							"value": "",
-							"type": "text",
-							"enabled": true
-						}
-					]
+					"response": []
 				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Get Investment",
-			"request": {
-				"url": "{{myinvestment-url}}/api/investments/<investment_id>",
-				"method": "GET",
-				"header": [
-					{
-						"key": "auth-token",
-						"value": "{{MYINVESTMENTS_AUTH_TOKEN}}",
+				{
+					"name": "Get Fee",
+					"request": {
+						"url": "{{myinvestment-url}}/api/fees/<fee_id>",
+						"method": "GET",
+						"header": [
+							{
+								"key": "auth-token",
+								"value": "{{MYINVESTMENTS_AUTH_TOKEN}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "type",
+									"value": "",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "holder",
+									"value": "",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
 						"description": ""
 					},
-					{
-						"key": "Content-Type",
-						"value": "application/x-www-form-urlencoded",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "name",
-							"value": "",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "type",
-							"value": "",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "holder",
-							"value": "",
-							"type": "text",
-							"enabled": true
-						}
-					]
+					"response": []
 				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Update Investment",
-			"request": {
-				"url": "{{myinvestment-url}}/api/investments/<investment_id>",
-				"method": "PUT",
-				"header": [
-					{
-						"key": "auth-token",
-						"value": "{{MYINVESTMENTS_AUTH_TOKEN}}",
+				{
+					"name": "Update Fee",
+					"request": {
+						"url": "{{myinvestment-url}}/api/fees/<fee_id>",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "auth-token",
+								"value": "{{MYINVESTMENTS_AUTH_TOKEN}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "date",
+									"value": "DD/MM/YYYY",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "holder",
+									"value": "",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "value",
+									"value": "",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
 						"description": ""
 					},
-					{
-						"key": "Content-Type",
-						"value": "application/x-www-form-urlencoded",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "name",
-							"value": "",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "type",
-							"value": "",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "holder",
-							"value": "",
-							"type": "text",
-							"enabled": true
-						}
-					]
+					"response": []
 				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Delete Investment",
-			"request": {
-				"url": "{{myinvestment-url}}/api/investments/<investment_id>",
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "auth-token",
-						"value": "{{MYINVESTMENTS_AUTH_TOKEN}}",
+				{
+					"name": "Delete Fee",
+					"request": {
+						"url": "{{myinvestment-url}}/api/fees/<fee_id>",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "auth-token",
+								"value": "{{MYINVESTMENTS_AUTH_TOKEN}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "type",
+									"value": "",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "holder",
+									"value": "",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
 						"description": ""
 					},
-					{
-						"key": "Content-Type",
-						"value": "application/x-www-form-urlencoded",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "name",
-							"value": "",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "type",
-							"value": "",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "holder",
-							"value": "",
-							"type": "text",
-							"enabled": true
-						}
-					]
-				},
-				"description": ""
-			},
-			"response": []
+					"response": []
+				}
+			]
 		},
 		{
-			"name": "Get incomes",
-			"request": {
-				"url": "{{myinvestment-url}}/api/investments/<investment_id>/income/",
-				"method": "GET",
-				"header": [
-					{
-						"key": "auth-token",
-						"value": "{{MYINVESTMENTS_AUTH_TOKEN}}",
+			"name": "Incomes",
+			"description": "",
+			"item": [
+				{
+					"name": "Get incomes",
+					"request": {
+						"url": "{{myinvestment-url}}/api/investments/<investment_id>/income/",
+						"method": "GET",
+						"header": [
+							{
+								"key": "auth-token",
+								"value": "{{MYINVESTMENTS_AUTH_TOKEN}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "date",
+									"value": "03/2017",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "quantity",
+									"value": "0.33",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "value",
+									"value": "275.14",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
 						"description": ""
 					},
-					{
-						"key": "Content-Type",
-						"value": "application/x-www-form-urlencoded",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "date",
-							"value": "03/2017",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "quantity",
-							"value": "0.33",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "value",
-							"value": "275.14",
-							"type": "text",
-							"enabled": true
-						}
-					]
+					"response": []
 				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Create income",
-			"request": {
-				"url": "{{myinvestment-url}}/api/investments/58f3fbf60db7470012118621/income/",
-				"method": "POST",
-				"header": [
-					{
-						"key": "auth-token",
-						"value": "{{MYINVESTMENTS_AUTH_TOKEN}}",
+				{
+					"name": "Create income",
+					"request": {
+						"url": "{{myinvestment-url}}/api/investments/58f3fbf60db7470012118621/income/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "auth-token",
+								"value": "{{MYINVESTMENTS_AUTH_TOKEN}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "date",
+									"value": "03/2017",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "quantity",
+									"value": "0.33",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "value",
+									"value": "275.14",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
 						"description": ""
 					},
-					{
-						"key": "Content-Type",
-						"value": "application/x-www-form-urlencoded",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "date",
-							"value": "03/2017",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "quantity",
-							"value": "0.33",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "value",
-							"value": "275.14",
-							"type": "text",
-							"enabled": true
-						}
-					]
+					"response": []
 				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Get income",
-			"request": {
-				"url": "{{myinvestment-url}}/api/investments/<investment_id>/income/<income_id>",
-				"method": "GET",
-				"header": [
-					{
-						"key": "auth-token",
-						"value": "{{MYINVESTMENTS_AUTH_TOKEN}}",
+				{
+					"name": "Get income",
+					"request": {
+						"url": "{{myinvestment-url}}/api/investments/<investment_id>/income/<income_id>",
+						"method": "GET",
+						"header": [
+							{
+								"key": "auth-token",
+								"value": "{{MYINVESTMENTS_AUTH_TOKEN}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "date",
+									"value": "04/2017",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "quantity",
+									"value": "0.33",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "value",
+									"value": "275.14",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
 						"description": ""
 					},
-					{
-						"key": "Content-Type",
-						"value": "application/x-www-form-urlencoded",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "date",
-							"value": "04/2017",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "quantity",
-							"value": "0.33",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "value",
-							"value": "275.14",
-							"type": "text",
-							"enabled": true
-						}
-					]
+					"response": []
 				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Update income",
-			"request": {
-				"url": "{{myinvestment-url}}/api/investments/<investment_id>/income/<income_id>",
-				"method": "PUT",
-				"header": [
-					{
-						"key": "auth-token",
-						"value": "{{MYINVESTMENTS_AUTH_TOKEN}}",
+				{
+					"name": "Update income",
+					"request": {
+						"url": "{{myinvestment-url}}/api/investments/<investment_id>/income/<income_id>",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "auth-token",
+								"value": "{{MYINVESTMENTS_AUTH_TOKEN}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "date",
+									"value": "04/2017",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "quantity",
+									"value": "0.33",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "value",
+									"value": "876.05",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "bought",
+									"value": "0",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
 						"description": ""
 					},
-					{
-						"key": "Content-Type",
-						"value": "application/x-www-form-urlencoded",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "date",
-							"value": "04/2017",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "quantity",
-							"value": "0.33",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "value",
-							"value": "876.05",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "bought",
-							"value": "0",
-							"type": "text",
-							"enabled": true
-						}
-					]
+					"response": []
 				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Delete income",
-			"request": {
-				"url": "{{myinvestment-url}}/api/investments/<investment_id>/income/<income_id>",
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "auth-token",
-						"value": "{{MYINVESTMENTS_AUTH_TOKEN}}",
+				{
+					"name": "Delete income",
+					"request": {
+						"url": "{{myinvestment-url}}/api/investments/<investment_id>/income/<income_id>",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "auth-token",
+								"value": "{{MYINVESTMENTS_AUTH_TOKEN}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "date",
+									"value": "04/2017",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "quantity",
+									"value": "0.33",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "value",
+									"value": "275.14",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
 						"description": ""
 					},
-					{
-						"key": "Content-Type",
-						"value": "application/x-www-form-urlencoded",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "date",
-							"value": "04/2017",
-							"type": "text",
-							"enabled": true
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Investments",
+			"description": "",
+			"item": [
+				{
+					"name": "Get Investments",
+					"request": {
+						"url": "{{myinvestment-url}}/api/investments",
+						"method": "GET",
+						"header": [
+							{
+								"key": "auth-token",
+								"value": "{{MYINVESTMENTS_AUTH_TOKEN}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "BRASIL PLURAL YIELD DI",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "type",
+									"value": "Fundo de Investimentos",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "holder",
+									"value": "Easynvest",
+									"type": "text",
+									"enabled": true
+								}
+							]
 						},
-						{
-							"key": "quantity",
-							"value": "0.33",
-							"type": "text",
-							"enabled": true
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create Investment",
+					"request": {
+						"url": "{{myinvestment-url}}/api/investments",
+						"method": "POST",
+						"header": [
+							{
+								"key": "auth-token",
+								"value": "{{MYINVESTMENTS_AUTH_TOKEN}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "type",
+									"value": "",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "holder",
+									"value": "",
+									"type": "text",
+									"enabled": true
+								}
+							]
 						},
-						{
-							"key": "value",
-							"value": "275.14",
-							"type": "text",
-							"enabled": true
-						}
-					]
+						"description": ""
+					},
+					"response": []
 				},
-				"description": ""
-			},
-			"response": []
+				{
+					"name": "Get Investment",
+					"request": {
+						"url": "{{myinvestment-url}}/api/investments/<investment_id>",
+						"method": "GET",
+						"header": [
+							{
+								"key": "auth-token",
+								"value": "{{MYINVESTMENTS_AUTH_TOKEN}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "type",
+									"value": "",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "holder",
+									"value": "",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update Investment",
+					"request": {
+						"url": "{{myinvestment-url}}/api/investments/<investment_id>",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "auth-token",
+								"value": "{{MYINVESTMENTS_AUTH_TOKEN}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "type",
+									"value": "",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "holder",
+									"value": "",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Investment",
+					"request": {
+						"url": "{{myinvestment-url}}/api/investments/<investment_id>",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "auth-token",
+								"value": "{{MYINVESTMENTS_AUTH_TOKEN}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "type",
+									"value": "",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "holder",
+									"value": "",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
 		},
 		{
-			"name": "Generate Investments Report",
-			"request": {
-				"url": "{{myinvestment-url}}/api/reports/investments/<investment_id>/",
-				"method": "GET",
-				"header": [
-					{
-						"key": "auth-token",
-						"value": "{{MYINVESTMENTS_AUTH_TOKEN}}",
+			"name": "Reports",
+			"description": "",
+			"item": [
+				{
+					"name": "Generate Investments Report",
+					"request": {
+						"url": "{{myinvestment-url}}/api/reports/investments/<investment_id>/",
+						"method": "GET",
+						"header": [
+							{
+								"key": "auth-token",
+								"value": "{{MYINVESTMENTS_AUTH_TOKEN}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
+					},
+					"response": []
 				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Generate Summary Report",
-			"request": {
-				"url": "{{myinvestment-url}}/api/reports/summary",
-				"method": "GET",
-				"header": [
-					{
-						"key": "auth-token",
-						"value": "{{MYINVESTMENTS_AUTH_TOKEN}}",
+				{
+					"name": "Generate Summary Report",
+					"request": {
+						"url": "{{myinvestment-url}}/api/reports/summary",
+						"method": "GET",
+						"header": [
+							{
+								"key": "auth-token",
+								"value": "{{MYINVESTMENTS_AUTH_TOKEN}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
+					},
+					"response": []
 				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Generate Holder Report",
-			"request": {
-				"url": "{{myinvestment-url}}/api/reports/holder/<holder_name>",
-				"method": "GET",
-				"header": [
-					{
-						"key": "auth-token",
-						"value": "{{MYINVESTMENTS_AUTH_TOKEN}}",
+				{
+					"name": "Generate Holder Report",
+					"request": {
+						"url": "{{myinvestment-url}}/api/reports/holder/<holder_name>",
+						"method": "GET",
+						"header": [
+							{
+								"key": "auth-token",
+								"value": "{{MYINVESTMENTS_AUTH_TOKEN}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"description": ""
-			},
-			"response": []
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
