@@ -1,14 +1,30 @@
 var moment = require('moment');
 var Investment = require('../models/investment');
 var Income = require('../models/income');
+var Fee = require('../models/fee');
 
 var exports = module.exports = {};
+
+function add_fees_and_render_report(holder, report, res) {
+  Investment.find({holder: holder}).sort('date').exec(function(err, fees) {
+    fees = [];
+    fees.forEach(function(fee) {
+      fee.push({
+        "name": fee.name,
+        "value": "R$" + fee.value.toFixed(2)
+      });
+    });
+    report["fees"] = fees;
+    res.json(report);
+  });
+}
 
 exports.generate_report = function(holder, res) {
   Investment.find({holder: holder}).exec(function(err, investments) {
     if (err)
       res.send(err);
     report = {}
+    report["investments"] = {}
     investments.forEach(function(investment, index) {
       Income.find({investment: investment.id}).sort('date').exec(function(err, incomes) {
           if (err) {
@@ -31,10 +47,10 @@ exports.generate_report = function(holder, res) {
           if(!typeData)
             typeData = {};
           typeData[investment.name] = investmentData;
-          report[investment.type] = typeData;
+          report["investments"][investment.type] = typeData;
 
           if(index == (investments.length - 1))
-            res.json(report);
+            add_fees_and_render_report(holder, report, res);
         });
     });
   });
