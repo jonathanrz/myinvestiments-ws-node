@@ -12,12 +12,15 @@ function validate_request(req, res) {
     return {message: "Date not informed"}
   if(!body.holder || body.holder.length == 0)
     return {message: "Holder not informed"}
+  if(!body.value || body.value.length == 0)
+    return {message: "Value not informed"}
 }
 
 function parse_request(fee, body) {
   fee.name = body.name;
   fee.date = moment(body.date, "DD/MM/YYYY");
   fee.holder = body.holder;
+  fee.value = body.value;
 }
 
 function root(router) {
