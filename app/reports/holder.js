@@ -23,8 +23,7 @@ exports.generate_report = function(holder, res) {
   Investment.find({holder: holder}).exec(function(err, investments) {
     if (err)
       res.send(err);
-    report = {}
-    report["investments"] = {}
+    investments = {};
     investments.forEach(function(investment, index) {
       Income.find({investment: investment.id}).sort('date').exec(function(err, incomes) {
           if (err) {
@@ -38,19 +37,21 @@ exports.generate_report = function(holder, res) {
           investment_yield = (lastValue - firstValue);
           months = moment(lastMonth).diff(moment(firstMonth), 'months', true);
           investmentData = {};
+          investmentData["name"] =  investment.name;
           investmentData["initialValue"] =  "R$" + firstValue.toFixed(2);
           investmentData["currentValue"] =  "R$" + lastValue.toFixed(2);
           investmentData["yield"] =  "R$" + investment_yield.toFixed(2);
           investmentData["months"] = months;
           investmentData["average"] = "R$" + (investment_yield / months).toFixed(2);
-          typeData = report[investment.type];
-          if(!typeData)
-            typeData = {};
-          typeData[investment.name] = investmentData;
-          report["investments"][investment.type] = typeData;
+          if(!investments[investment.type])
+            investments[investment.type] = [];
+          investments[investment.type].push(investmentData);
 
-          if(index == (investments.length - 1))
+          if(index == (investments.length - 1)) {
+            report = {};
+            report["investments"] = investments;
             add_fees_and_render_report(holder, report, res);
+          }
         });
     });
   });
