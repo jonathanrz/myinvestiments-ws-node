@@ -6,15 +6,15 @@ var Fee = require('../models/fee');
 var exports = module.exports = {};
 
 function add_fees_and_render_report(holder, report, res) {
-  Investment.find({holder: holder}).sort('date').exec(function(err, fees) {
-    fees = [];
+  Fee.find({holder: holder}).sort('date').exec(function(err, fees) {
+    feesReport = [];
     fees.forEach(function(fee) {
-      fee.push({
+      feesReport.push({
         "name": fee.name,
         "value": "R$" + fee.value.toFixed(2)
       });
     });
-    report["fees"] = fees;
+    report["fees"] = feesReport;
     res.json(report);
   });
 }
