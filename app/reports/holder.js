@@ -23,7 +23,7 @@ exports.generate_report = function(holder, res) {
   Investment.find({holder: holder}).exec(function(err, investments) {
     if (err)
       res.send(err);
-    investments = {};
+    investmentsReport = {};
     investments.forEach(function(investment, index) {
       Income.find({investment: investment.id}).sort('date').exec(function(err, incomes) {
           if (err) {
@@ -43,13 +43,13 @@ exports.generate_report = function(holder, res) {
           investmentData["yield"] =  "R$" + investment_yield.toFixed(2);
           investmentData["months"] = months;
           investmentData["average"] = "R$" + (investment_yield / months).toFixed(2);
-          if(!investments[investment.type])
-            investments[investment.type] = [];
-          investments[investment.type].push(investmentData);
+          if(!investmentsReport[investment.type])
+            investmentsReport[investment.type] = [];
+          investmentsReport[investment.type].push(investmentData);
 
           if(index == (investments.length - 1)) {
             report = {};
-            report["investments"] = investments;
+            report["investments"] = investmentsReport;
             add_fees_and_render_report(holder, report, res);
           }
         });
