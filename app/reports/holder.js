@@ -11,6 +11,7 @@ function add_fees_and_render_report(holder, report, res) {
     fees.forEach(function(fee) {
       feesReport.push({
         "name": fee.name,
+        "date": moment(fee.date).format("DD/MM/YYYY"),
         "value": "R$" + fee.value.toFixed(2)
       });
     });
