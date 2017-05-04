@@ -13,7 +13,7 @@ function add_interests_and_render_report(holder, report, res) {
       interestsReport.push({
         "name": interest.name,
         "date": moment(interest.date).format("DD/MM/YYYY"),
-        "value": "R$" + interest.net_value.toFixed(2)
+        "value": "R$" + interest.net_value().toFixed(2)
       });
     });
     report["interests"] = interestsReport;
