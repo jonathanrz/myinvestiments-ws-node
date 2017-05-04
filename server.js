@@ -5,6 +5,7 @@ var database   = require('./app/database/db')
 var investment = require('./app/routes/investment')
 var income     = require('./app/routes/income')
 var fee        = require('./app/routes/fee')
+var interest   = require('./app/routes/interest')
 var reports    = require('./app/routes/reports')
 
 var app = express();
@@ -32,6 +33,7 @@ app.use('/api', router);
 investment.map_routes(router);
 income.map_routes(router);
 fee.map_routes(router);
+interest.map_routes(router);
 reports.map_routes(router);
 
 app.listen(app.get('port'), function() {

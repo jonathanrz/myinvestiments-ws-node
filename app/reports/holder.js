@@ -2,8 +2,24 @@ var moment = require('moment');
 var Investment = require('../models/investment');
 var Income = require('../models/income');
 var Fee = require('../models/fee');
+var Interest = require('../models/interest');
 
 var exports = module.exports = {};
+
+function add_interests_and_render_report(holder, report, res) {
+  Interest.find({holder: holder}).sort('date').exec(function(err, interests) {
+    interestsReport = [];
+    interests.forEach(function(interest) {
+      interestsReport.push({
+        "name": interest.name,
+        "date": moment(interest.date).format("DD/MM/YYYY"),
+        "value": "R$" + interest.net_value().toFixed(2)
+      });
+    });
+    report["interests"] = interestsReport;
+    res.json(report);
+  });
+}
 
 function add_fees_and_render_report(holder, report, res) {
   Fee.find({holder: holder}).sort('date').exec(function(err, fees) {
@@ -16,7 +32,7 @@ function add_fees_and_render_report(holder, report, res) {
       });
     });
     report["fees"] = feesReport;
-    res.json(report);
+    add_interests_and_render_report(holder, report, res);
   });
 }
 
