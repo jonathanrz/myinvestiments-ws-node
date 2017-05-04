@@ -9,7 +9,7 @@ var interestSchema = new Schema({
     ir_value: Number
 });
 
-interestSchema.methods.netValue = function() {
+interestSchema.methods.net_value = function() {
   return this.gross_value - this.ir_value;
 };
 
