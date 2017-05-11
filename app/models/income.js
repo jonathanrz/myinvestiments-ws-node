@@ -16,4 +16,10 @@ incomeSchema.methods.yield = function(originalValue) {
   return result;
 };
 
+incomeSchema.methods.boughtValue = function() {
+  if(this.bought)
+    return this.bought;
+  return 0;
+};
+
 module.exports = mongoose.model('Income', incomeSchema);

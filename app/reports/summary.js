@@ -9,10 +9,11 @@ function generateDiffAndRenderData(report, res) {
   for(month in report) {
     monthData = report[month];
     if(lastMonthValue > 0) {
-      monthData["diff"] = "R$" + (monthData["value"] - lastMonthValue).toFixed(2);
+      monthData["yield"] = "R$" + (monthData["total"] - lastMonthValue - monthData["bought"]).toFixed(2);
     }
-    lastMonthValue = monthData["value"];
-    monthData["value"] = "R$" + monthData["value"].toFixed(2);
+    lastMonthValue = monthData["total"];
+    monthData["total"] = "R$" + monthData["total"].toFixed(2);
+    monthData["bought"] = "R$" + monthData["bought"].toFixed(2);
   }
   res.json(report);
 }
@@ -28,12 +29,15 @@ exports.generate_report = function(res) {
       currentMonth = moment(income.date).format("MM/YYYY");
       monthData = report[currentMonth];
       value = 0;
+      bought = 0;
       if(monthData) {
-        value = monthData["value"];
+        value = monthData["total"];
+        bought = monthData["bought"];
       } else {
         monthData = {};
       }
-      monthData["value"] = value + income.value;
+      monthData["total"] = value + income.value;
+      monthData["bought"] = bought + income.boughtValue();
       report[currentMonth] = monthData;
     });
     generateDiffAndRenderData(report, res);
