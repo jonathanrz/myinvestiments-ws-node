@@ -11,7 +11,7 @@ function generateDiffAndRenderData(report, res) {
     if(lastMonthValue > 0) {
       monthData["yield"] = "R$" + (monthData["total"] - lastMonthValue - monthData["bought"]).toFixed(2);
     }
-    lastMonthValue = monthData["value"];
+    lastMonthValue = monthData["total"];
     monthData["total"] = "R$" + monthData["total"].toFixed(2);
     monthData["bought"] = "R$" + monthData["bought"].toFixed(2);
   }
