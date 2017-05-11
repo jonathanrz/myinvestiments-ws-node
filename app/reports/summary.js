@@ -28,6 +28,7 @@ exports.generate_report = function(res) {
       currentMonth = moment(income.date).format("MM/YYYY");
       monthData = report[currentMonth];
       value = 0;
+      bought = 0;
       if(monthData) {
         value = monthData["value"];
         bought = monthData["bought"];
