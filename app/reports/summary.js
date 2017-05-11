@@ -30,10 +30,12 @@ exports.generate_report = function(res) {
       value = 0;
       if(monthData) {
         value = monthData["value"];
+        bought = monthData["bought"];
       } else {
         monthData = {};
       }
       monthData["value"] = value + income.value;
+      monthData["bought"] = bought + income.bought;
       report[currentMonth] = monthData;
     });
     generateDiffAndRenderData(report, res);
