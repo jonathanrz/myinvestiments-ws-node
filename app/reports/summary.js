@@ -35,7 +35,7 @@ exports.generate_report = function(res) {
         monthData = {};
       }
       monthData["value"] = value + income.value;
-      monthData["bought"] = bought + income.bought;
+      monthData["bought"] = bought + income.boughtValue();
       report[currentMonth] = monthData;
     });
     generateDiffAndRenderData(report, res);
