@@ -9,10 +9,11 @@ function generateDiffAndRenderData(report, res) {
   for(month in report) {
     monthData = report[month];
     if(lastMonthValue > 0) {
-      monthData["diff"] = "R$" + (monthData["value"] - lastMonthValue).toFixed(2);
+      monthData["yield"] = "R$" + (monthData["value"] - lastMonthValue - monthData["bought"]).toFixed(2);
     }
     lastMonthValue = monthData["value"];
     monthData["value"] = "R$" + monthData["value"].toFixed(2);
+    monthData["bought"] = "R$" + monthData["bought"].toFixed(2);
   }
   res.json(report);
 }
