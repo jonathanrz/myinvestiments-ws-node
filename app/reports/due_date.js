@@ -7,14 +7,14 @@ var exports = module.exports = {};
 function fill_report(investments, res) {
   report = [];
   investments.forEach(function(investment, index) {
-    report_data = {};
-    report_data["name"] = investment.name;
-    report_data["due_date"] = moment(investment.due_date).format("DD/MM/YYYY");
     Income.find({investment: investment.id}).sort('-date').limit(1).exec(function(err, incomes) {
         if (err) {
           res.send(err);
           return;
         }
+        report_data = {};
+        report_data["name"] = investment.name;
+        report_data["due_date"] = moment(investment.due_date).format("DD/MM/YYYY");
         report_data["value"] = "R$" + incomes[0].value.toFixed(2);
         report.push(report_data);
         if(index == (investments.length - 1))
