@@ -1,3 +1,4 @@
+var moment = require('moment');
 var Investment = require('../models/investment');
 
 var exports = module.exports = {};
