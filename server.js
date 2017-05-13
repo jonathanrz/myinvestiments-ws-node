@@ -18,10 +18,11 @@ app.set('port', (process.env.PORT || 8080));
 var router = express.Router();
 
 router.use(function(req, res, next) {
-  if(req.headers["auth-token"] === process.env["MYINVESTMENTS_AUTH_TOKEN"])
-    next();
-  else
+  if(req.headers["auth-token"] !== process.env["MYINVESTMENTS_AUTH_TOKEN"]) {
     res.status(401).send({message: "Invalid auth token"});
+    return;
+  }
+  next();
 });
 
 router.get('/', function(req, res) {
