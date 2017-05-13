@@ -17,6 +17,8 @@ function parse_request(investment, body) {
   investment.name = body.name;
   investment.type = body.type;
   investment.holder = body.holder;
+  if(body.due_date)
+    investment.due_date = moment(body.due_date, "DD/MM/YYYY");
 }
 
 function root(router) {
