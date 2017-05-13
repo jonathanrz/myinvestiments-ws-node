@@ -17,7 +17,7 @@ function fill_report(investments, res) {
         }
         report_data["value"] = "R$" + incomes[0].value.toFixed(2);
         report.push(report_data);
-        if(index == (investments.length - 1)) {
+        if(index == (investments.length - 1))
           res.json(report);
     });
   });
