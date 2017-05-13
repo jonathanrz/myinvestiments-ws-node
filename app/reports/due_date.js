@@ -7,6 +7,8 @@ var exports = module.exports = {};
 function fill_report(investments, res) {
   report = [];
   investments.forEach(function(investment, index) {
+    if(!investment.due_date)
+      return;
     Income.find({investment: investment.id}).sort('-date').limit(1).exec(function(err, incomes) {
         if (err) {
           res.send(err);
