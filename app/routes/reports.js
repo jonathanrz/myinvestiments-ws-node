@@ -1,6 +1,7 @@
 var investments = require('../reports/investments');
 var summary = require('../reports/summary');
 var holder = require('../reports/holder');
+var due_date = require('../reports/due_date');
 
 var exports = module.exports = {};
 
@@ -16,6 +17,10 @@ function root(router) {
   router.route('/reports/holder/:holder')
     .get(function(req, res) {
       holder.generate_report(req.params.holder, res);
+    });
+  router.route('/reports/due_date')
+    .get(function(req, res) {
+      due_date.generate_report(res);
     });
 }
 
