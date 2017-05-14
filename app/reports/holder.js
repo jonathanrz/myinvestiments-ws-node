@@ -42,7 +42,7 @@ exports.generate_report = function(holder, res) {
       res.send(err);
     investmentsReport = {};
     var incomeQueriesPromises = [];
-    
+
     investments.forEach(function(investment) {
       var queryPromise = Income.find({investment: investment.id}).sort('date').exec();
       incomeQueriesPromises.push(queryPromise);
@@ -68,11 +68,11 @@ exports.generate_report = function(holder, res) {
           res.send(err);
         });
     });
-  });
 
-  Promise.all(incomeQueriesPromises).then(function() {
-    report = {};
-    report["investments"] = investmentsReport;
-    add_fees_and_render_report(holder, report, res);
+    Promise.all(incomeQueriesPromises).then(function() {
+      report = {};
+      report["investments"] = investmentsReport;
+      add_fees_and_render_report(holder, report, res);
+    });
   });
 }
