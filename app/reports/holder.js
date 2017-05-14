@@ -42,11 +42,8 @@ exports.generate_report = function(holder, res) {
       res.send(err);
     investmentsReport = {};
     investments.forEach(function(investment, index) {
-      Income.find({investment: investment.id}).sort('date').exec(function(err, incomes) {
-          if (err) {
-            res.send(err);
-            return;
-          }
+      var promise = Income.find({investment: investment.id}).sort('date').exec();
+      promise.then(function(incomes) {
           var firstMonth = incomes[0].date;
           var firstValue = incomes[0].value;
           var lastMonth = incomes[incomes.length - 1].date;
@@ -69,6 +66,9 @@ exports.generate_report = function(holder, res) {
             report["investments"] = investmentsReport;
             add_fees_and_render_report(holder, report, res);
           }
+        })
+        .catch(function(err){
+          res.send(err);
         });
     });
   });
