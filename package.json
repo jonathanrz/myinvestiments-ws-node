@@ -2,7 +2,7 @@
     "name": "node-api",
     "main": "server.js",
     "engines": {
-      "node": "5.4.0"
+      "node": "8.1.4"
     },
     "dependencies": {
       "express": "4.15.2",
