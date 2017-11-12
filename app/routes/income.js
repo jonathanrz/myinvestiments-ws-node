@@ -22,7 +22,7 @@ function parse_request(income, investment, body) {
   income.bought = body.bought;
   income.gross = body.gross;
   income.ir = body.ir;
-  income.tax = body.tax;
+  income.fee = body.fee;
 }
 
 function root(router) {

@@ -9,7 +9,7 @@ var incomeSchema = new Schema({
   bought: Number,
   gross: Number,
   ir: Number,
-  tax: Number
+  fee: Number
 });
 
 incomeSchema.methods.yield = function(originalValue) {
@@ -28,13 +28,13 @@ incomeSchema.methods.grossValue = function() {
   return 0;
 };
 
-incomeSchema.methods.taxValue = function() {
-  if (this.tax) return this.tax;
+incomeSchema.methods.irValue = function() {
+  if (this.ir) return this.ir;
   return 0;
 };
 
-incomeSchema.methods.irValue = function() {
-  if (this.ir) return this.ir;
+incomeSchema.methods.feeValue = function() {
+  if (this.fee) return this.fee;
   return 0;
 };
 
