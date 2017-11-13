@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+mongoose.Promise = require('bluebird');
 
 var uristring = process.env.MONGODB_URI;
 mongoose.connect(uristring, function (err, res) {
