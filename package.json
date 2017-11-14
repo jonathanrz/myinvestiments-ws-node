@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^8.0.2",
+    "babel-preset-es2015": "^6.24.1",
     "eslint": "^4.11.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-config-recommended": "^1.5.0",
