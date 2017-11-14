@@ -3,11 +3,11 @@ import bodyParser from "body-parser";
 import helmet from "helmet";
 import cors from "cors";
 import connectToDatabase from "./app/database/db";
-import investment from "./app/routes/investment";
-import income from "./app/routes/income";
-import fee from "./app/routes/fee";
-import interest from "./app/routes/interest";
-import reports from "./app/routes/reports";
+import investmentRoutes from "./app/routes/investment";
+import incomeRoutes from "./app/routes/income";
+import feeRoutes from "./app/routes/fee";
+import interestRoutes from "./app/routes/interest";
+import reportsRoutes from "./app/routes/reports";
 
 const app = express();
 connectToDatabase();
@@ -34,11 +34,11 @@ router.get("/", (req, res) => {
 
 app.use("/api", router);
 
-investment.map_routes(router);
-income.map_routes(router);
-fee.map_routes(router);
-interest.map_routes(router);
-reports.map_routes(router);
+investmentRoutes(router);
+incomeRoutes(router);
+feeRoutes(router);
+interestRoutes(router);
+reportsRoutes(router);
 
 app.listen(app.get("port"), () => {
   console.log("app running on port " + app.get("port"));

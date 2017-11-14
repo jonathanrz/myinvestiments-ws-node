@@ -18,6 +18,8 @@ function root(router) {
   });
 }
 
-export default function(router) {
+const map_routes = router => {
   root(router);
-}
+};
+
+export default map_routes;
