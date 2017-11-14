@@ -1,16 +1,14 @@
-var moment = require("moment");
-var Income = require("../models/income");
+import moment from "moment";
+import Income from "../models/income";
 
-var exports = (module.exports = {});
+function validate_request(req) {
+  const body = req.body;
 
-function validate_request(req, res) {
-  body = req.body;
-
-  if (!body.date || body.date.length == 0)
+  if (!body.date || body.date.length === 0)
     return { message: "Date not informed" };
-  if (!body.quantity || body.quantity.length == 0)
+  if (!body.quantity || body.quantity.length === 0)
     return { message: "Quantity not informed" };
-  if (!body.value || body.value.length == 0)
+  if (!body.value || body.value.length === 0)
     return { message: "Value not informed" };
 }
 
@@ -28,25 +26,25 @@ function parse_request(income, investment, body) {
 function root(router) {
   router
     .route("/investments/:investment_id/income")
-    .get(function(req, res) {
+    .get((req, res) => {
       Income.find({ investment: req.params.investment_id })
         .sort("-date")
-        .exec(function(err, incomes) {
+        .exec((err, incomes) => {
           if (err) res.send(err);
 
           res.json(incomes);
         });
     })
-    .post(function(req, res) {
-      var income = new Income();
-      validation = validate_request(req, res);
+    .post((req, res) => {
+      const income = new Income();
+      const validation = validate_request(req, res);
       if (validation) {
         res.status(400).send(validation);
         return;
       }
       parse_request(income, req.params.investment_id, req.body);
 
-      income.save(function(err, income) {
+      income.save((err, income) => {
         if (err) res.send(err);
 
         res.json(income);
@@ -57,32 +55,32 @@ function root(router) {
 function model(router) {
   router
     .route("/investments/:investment_id/income/:income_id")
-    .get(function(req, res) {
-      Income.findById(req.params.income_id, function(err, income) {
+    .get((req, res) => {
+      Income.findById(req.params.income_id, (err, income) => {
         if (err) res.send(err);
         res.json(income);
       });
     })
-    .put(function(req, res) {
-      Income.findById(req.params.income_id, function(err, income) {
+    .put((req, res) => {
+      Income.findById(req.params.income_id, (err, income) => {
         if (err) res.send(err);
 
-        validation = validate_request(req, res);
+        const validation = validate_request(req, res);
         if (validation) {
           res.status(400).send(validation);
           return;
         }
         parse_request(income, req.params.investment_id, req.body);
 
-        income.save(function(err, income) {
+        income.save((err, income) => {
           if (err) res.send(err);
 
           res.json(income);
         });
       });
     })
-    .delete(function(req, res) {
-      Income.remove({ _id: req.params.income_id }, function(err, income) {
+    .delete((req, res) => {
+      Income.remove({ _id: req.params.income_id }, (err, income) => {
         if (err) res.send(err);
 
         res.json(income);
@@ -90,7 +88,7 @@ function model(router) {
     });
 }
 
-exports.map_routes = function(router) {
+export default function(router) {
   root(router);
   model(router);
-};
+}

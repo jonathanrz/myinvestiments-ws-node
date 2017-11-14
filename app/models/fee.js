@@ -1,11 +1,10 @@
-var mongoose     = require('mongoose');
-var Schema       = mongoose.Schema;
+import mongoose from "mongoose";
 
-var feeSchema = new Schema({
-    name: String,
-    date: Date,
-    holder: String,
-    value: Number
+const feeSchema = new mongoose.Schema({
+  name: String,
+  date: Date,
+  holder: String,
+  value: Number
 });
 
-module.exports = mongoose.model('Fee', feeSchema);
+export default mongoose.model("Fee", feeSchema);

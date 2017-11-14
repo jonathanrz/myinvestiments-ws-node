@@ -1,11 +1,10 @@
-var mongoose     = require('mongoose');
-var Schema       = mongoose.Schema;
+import mongoose from "mongoose";
 
-var InvestmentSchema = new Schema({
-    name: String,
-    type: String,
-    holder: String,
-    due_date: Date
+const InvestmentSchema = new mongoose.Schema({
+  name: String,
+  type: String,
+  holder: String,
+  due_date: Date
 });
 
-module.exports = mongoose.model('Investment', InvestmentSchema);
+export default mongoose.model("Investment", InvestmentSchema);

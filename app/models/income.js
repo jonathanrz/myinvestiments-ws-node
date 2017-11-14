@@ -1,7 +1,6 @@
-var mongoose = require("mongoose");
-var Schema = mongoose.Schema;
+import mongoose from "mongoose";
 
-var incomeSchema = new Schema({
+const incomeSchema = new mongoose.Schema({
   investment: String,
   date: Date,
   quantity: Number,
@@ -13,7 +12,7 @@ var incomeSchema = new Schema({
 });
 
 incomeSchema.methods.yield = function(originalValue) {
-  result = this.value - originalValue;
+  const result = this.value - originalValue;
   if (this.bought) return result - this.bought;
   return result;
 };
@@ -38,4 +37,4 @@ incomeSchema.methods.feeValue = function() {
   return 0;
 };
 
-module.exports = mongoose.model("Income", incomeSchema);
+export default mongoose.model("Income", incomeSchema);

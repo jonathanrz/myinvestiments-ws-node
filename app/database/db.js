@@ -1,10 +1,14 @@
-var mongoose = require('mongoose');
+import mongoose from "mongoose";
 
-var uristring = process.env.MONGODB_URI;
-mongoose.connect(uristring, function (err, res) {
-  if (err) {
-    console.log ('ERROR connecting to: ' + uristring + '. ' + err);
-  } else {
-    console.log ('Succeeded connected to: ' + uristring);
-  }
-});
+const uristring = process.env.MONGODB_URI;
+const connectToDatabase = () => {
+  mongoose.connect(uristring, err => {
+    if (err) {
+      console.log("ERROR connecting to: " + uristring + ". " + err);
+    } else {
+      console.log("Succeeded connected to: " + uristring);
+    }
+  });
+};
+
+export default connectToDatabase;
