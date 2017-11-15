@@ -1,0 +1,68 @@
+# Ruby CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-ruby/ for more details
+#
+---
+version: 2
+jobs:
+  lint:
+    docker:
+      - image: circleci/node:8.2.1
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run:
+          name: update yarn
+          command: sudo npm install yarn@1.3.2 --global
+      - restore_cache:
+          keys:
+            - v2-dependencies-node_modules-{{ arch }}-{{ checksum "yarn.lock" }}
+      - run:
+          name: install dependencies
+          command: yarn
+      - save_cache:
+          paths:
+            - node_modules
+          key: v2-dependencies-node_modules-{{ arch }}-{{ checksum "yarn.lock" }}
+      - run:
+          name: run linters
+          command: yarn lint
+
+  production:
+    docker:
+      - image: buildpack-deps:trusty
+    working_directory: ~/repo
+    steps:
+      - checkout
+
+      - run:
+          name: install heroku
+          command: |
+            bash .circleci/setup-heroku.sh
+      - deploy:
+          name: Deploy Master to Production Heroku
+          command: |
+            git remote add heroku https://git.heroku.com/jonathanzanella-myinvestments.git
+            git push heroku master
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - lint
+
+      - release:
+          type: approval
+          requires:
+            - lint
+          filters:
+            branches:
+              only:
+                - master
+      - production:
+          requires:
+            - release
+          filters:
+            branches:
+              only:
+                - master
