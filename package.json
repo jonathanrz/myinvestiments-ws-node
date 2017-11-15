@@ -26,8 +26,8 @@
     "husky": "^0.14.3"
   },
   "scripts": {
-    "eslint": "eslint .",
-    "precommit": "npm run eslint",
+    "lint": "eslint .",
+    "precommit": "yarn lint",
     "start": "babel-node server.js"
   }
 }
