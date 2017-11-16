@@ -5,9 +5,6 @@ import cors from "cors";
 import connectToDatabase from "./app/database/db";
 import investmentRoutes from "./app/routes/investment";
 import incomeRoutes from "./app/routes/income";
-import feeRoutes from "./app/routes/fee";
-import interestRoutes from "./app/routes/interest";
-import reportsRoutes from "./app/routes/reports";
 
 const app = express();
 connectToDatabase();
@@ -36,9 +33,6 @@ app.use("/api", router);
 
 investmentRoutes(router);
 incomeRoutes(router);
-feeRoutes(router);
-interestRoutes(router);
-reportsRoutes(router);
 
 app.listen(app.get("port"), () => {
   console.log("app running on port " + app.get("port"));
