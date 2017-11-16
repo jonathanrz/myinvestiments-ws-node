@@ -36,20 +36,24 @@ function root(router) {
           // if (req.query.with_incomes) {
           console.log(`inside if`);
           investments = investments.map(investment => {
-            investment.a = "a";
-            console.log(`investment=${investment.name}`);
+            const newInvestment = {};
+            Object.keys(investment).forEach(
+              key => (newInvestment[key] = investment[key])
+            );
+            newInvestment.a = "a";
+            console.log(`investment=${newInvestment.name}`);
             const queryPromise = Income.find({
-              investment: investment._id
+              investment: newInvestment._id
             }).exec();
             queriesPromises.push(queryPromise);
             queryPromise.then(incomes => {
-              investment.incomes = incomes;
+              newInvestment.incomes = incomes;
               console.log(
-                `investment=${investment.name} incomes=${investment.incomes
-                  .length}`
+                `investment=${newInvestment.name} incomes=${newInvestment
+                  .incomes.length}`
               );
             });
-            return investment;
+            return newInvestment;
           });
           console.log(`end of if`);
           // }
