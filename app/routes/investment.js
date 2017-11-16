@@ -36,6 +36,7 @@ function root(router) {
           if (req.query.with_incomes) {
             console.log(`inside if`);
             investments.forEach(investment => {
+              investment.a = "a";
               console.log(`investment=${investment.name}`);
               const queryPromise = Income.find({
                 investment: investment._id
