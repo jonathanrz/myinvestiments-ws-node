@@ -33,30 +33,27 @@ function root(router) {
           console.log(`with_incomes=${req.query.with_incomes}`);
           console.log(`query=${req.query}`);
           console.log(`params=${req.params}`);
-          // if (req.query.with_incomes) {
-          console.log(`inside if`);
-          investments = investments.map(investment => {
-            const newInvestment = {};
-            Object.keys(investment).forEach(
-              key => (newInvestment[key] = investment[key])
-            );
-            newInvestment.a = "a";
-            console.log(`investment=${newInvestment.name}`);
-            const queryPromise = Income.find({
-              investment: newInvestment._id
-            }).exec();
-            queriesPromises.push(queryPromise);
-            queryPromise.then(incomes => {
-              newInvestment.incomes = incomes;
-              console.log(
-                `investment=${newInvestment.name} incomes=${newInvestment
-                  .incomes.length}`
-              );
+          if (req.query.with_incomes) {
+            console.log(`inside if`);
+            investments = investments.map(investment => {
+              const newInvestment = investment.toSimpleObject();
+              newInvestment.a = "a";
+              console.log(`investment=${newInvestment.name}`);
+              const queryPromise = Income.find({
+                investment: newInvestment._id
+              }).exec();
+              queriesPromises.push(queryPromise);
+              queryPromise.then(incomes => {
+                newInvestment.incomes = incomes;
+                console.log(
+                  `investment=${newInvestment.name} incomes=${newInvestment
+                    .incomes.length}`
+                );
+              });
+              return newInvestment;
             });
-            return newInvestment;
-          });
-          console.log(`end of if`);
-          // }
+            console.log(`end of if`);
+          }
 
           console.log(`promises=${queriesPromises.length}`);
           Promise.all(queriesPromises).then(() => {
