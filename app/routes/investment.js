@@ -52,7 +52,10 @@ function root(router) {
         }
 
         console.log(`promises=${queriesPromises.length}`);
-        Promise.all(queriesPromises).then(() => res.json(investments));
+        Promise.all(queriesPromises).then(() => {
+          console.log(`incomes=${investments[0].incomes.length}`);
+          res.json(investments);
+        });
         return res;
       }).catch(err => {
         res.send(err);
