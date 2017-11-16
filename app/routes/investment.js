@@ -56,7 +56,7 @@ function root(router) {
           console.log(`promises=${queriesPromises.length}`);
           Promise.all(queriesPromises).then(() => {
             console.log(`incomes=${investments[0].incomes.length}`);
-            // res.json(investments);
+            res.json(investments);
           });
           return false;
         })
