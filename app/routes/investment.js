@@ -87,6 +87,7 @@ function model(router) {
     .get((req, res) => {
       Investment.findById(req.params.investment_id, (err, investment) => {
         if (err) res.send(err);
+        investment.a = "a";
         res.json(investment);
       });
     })
