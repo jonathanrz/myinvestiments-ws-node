@@ -27,9 +27,9 @@ function root(router) {
       Investment.find((err, investments) => {
         if (err) res.send(err);
 
-        if (req.query.with_incomes) {
-          const queriesPromises = [];
+        const queriesPromises = [];
 
+        if (req.query.with_incomes) {
           investments = investments.map(investment => {
             const newInvestment = investment.toSimpleObject();
             const queryPromise = Income.find({
@@ -41,13 +41,11 @@ function root(router) {
             });
             return newInvestment;
           });
-
-          Promise.all(queriesPromises).then(() => {
-            res.json(investments);
-          });
-        } else {
-          res.json(investments);
         }
+
+        Promise.all(queriesPromises).then(() => {
+          res.json(investments);
+        });
 
         return false;
       }).catch(err => {
