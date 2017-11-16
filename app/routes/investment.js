@@ -56,7 +56,7 @@ function root(router) {
           console.log(`incomes=${investments[0].incomes.length}`);
           res.json(investments);
         });
-        return res;
+        return false;
       }).catch(err => {
         res.send(err);
       });
