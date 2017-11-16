@@ -28,6 +28,23 @@ jobs:
           name: run linters
           command: yarn lint
 
+  staging:
+    docker:
+      - image: buildpack-deps:trusty
+    working_directory: ~/repo
+    steps:
+      - checkout
+
+      - run:
+          name: install heroku
+          command: |
+            bash .circleci/setup-heroku.sh
+      - deploy:
+          name: Deploy Master to Staging Heroku
+          command: |
+            git remote add heroku https://git.heroku.com/myinvestments-stg.git
+            git push heroku master
+
   production:
     docker:
       - image: buildpack-deps:trusty
@@ -42,7 +59,7 @@ jobs:
       - deploy:
           name: Deploy Master to Production Heroku
           command: |
-            git remote add heroku https://git.heroku.com/jonathanzanella-myinvestments.git
+            git remote add heroku https://git.heroku.com/myinvestments-prd.git
             git push heroku master
 
 workflows:
@@ -51,10 +68,18 @@ workflows:
     jobs:
       - lint
 
+      - staging:
+          requires:
+            - lint
+            - test
+          filters:
+            branches:
+              only:
+                - master
       - release:
           type: approval
           requires:
-            - lint
+            - staging
           filters:
             branches:
               only:
