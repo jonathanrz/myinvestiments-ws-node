@@ -34,7 +34,7 @@ function root(router) {
             const newInvestment = investment.toSimpleObject();
             const queryPromise = Income.find({
               investment: newInvestment._id
-            }).exec();
+            }).sort("-date").exec();
             queriesPromises.push(queryPromise);
             queryPromise.then(incomes => {
               newInvestment.incomes = incomes;
