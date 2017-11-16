@@ -71,7 +71,6 @@ workflows:
       - staging:
           requires:
             - lint
-            - test
           filters:
             branches:
               only:
