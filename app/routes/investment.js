@@ -33,17 +33,25 @@ function root(router) {
         console.log(`query=${req.query}`);
         console.log(`params=${req.params}`);
         if (req.query.with_incomes) {
+          console.log(`inside if`);
           investments.forEach(investment => {
+            console.log(`investment=${investment.name}`);
             const queryPromise = Income.find({
               investment: investment._id
             }).exec();
             queriesPromises.push(queryPromise);
             queryPromise.then(incomes => {
               investment.incomes = incomes;
+              console.log(
+                `investment=${investment.name} incomes=${investment.incomes
+                  .length}`
+              );
             });
           });
+          console.log(`end of if`);
         }
 
+        console.log(`promises=${queriesPromises.length}`);
         Promise.all(queriesPromises).then(() => res.json(investments));
         return res;
       }).catch(err => {
