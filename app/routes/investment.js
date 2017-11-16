@@ -29,7 +29,7 @@ function root(router) {
 
         const queriesPromises = [];
 
-        if (req.params.with_incomes) {
+        if (req.query.with_incomes) {
           investments.forEach(investment => {
             const queryPromise = Income.find({
               investment: investment._id
