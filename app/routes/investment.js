@@ -33,26 +33,26 @@ function root(router) {
           console.log(`with_incomes=${req.query.with_incomes}`);
           console.log(`query=${req.query}`);
           console.log(`params=${req.params}`);
-          if (req.query.with_incomes) {
-            console.log(`inside if`);
-            investments = investments.map(investment => {
-              investment.a = "a";
-              console.log(`investment=${investment.name}`);
-              const queryPromise = Income.find({
-                investment: investment._id
-              }).exec();
-              queriesPromises.push(queryPromise);
-              queryPromise.then(incomes => {
-                investment.incomes = incomes;
-                console.log(
-                  `investment=${investment.name} incomes=${investment.incomes
-                    .length}`
-                );
-              });
-              return investment;
+          // if (req.query.with_incomes) {
+          console.log(`inside if`);
+          investments = investments.map(investment => {
+            investment.a = "a";
+            console.log(`investment=${investment.name}`);
+            const queryPromise = Income.find({
+              investment: investment._id
+            }).exec();
+            queriesPromises.push(queryPromise);
+            queryPromise.then(incomes => {
+              investment.incomes = incomes;
+              console.log(
+                `investment=${investment.name} incomes=${investment.incomes
+                  .length}`
+              );
             });
-            console.log(`end of if`);
-          }
+            return investment;
+          });
+          console.log(`end of if`);
+          // }
 
           console.log(`promises=${queriesPromises.length}`);
           Promise.all(queriesPromises).then(() => {
