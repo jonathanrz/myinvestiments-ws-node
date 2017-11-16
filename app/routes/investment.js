@@ -35,7 +35,7 @@ function root(router) {
           console.log(`params=${req.params}`);
           if (req.query.with_incomes) {
             console.log(`inside if`);
-            investments.forEach(investment => {
+            investments = investments.map(investment => {
               investment.a = "a";
               console.log(`investment=${investment.name}`);
               const queryPromise = Income.find({
@@ -49,6 +49,7 @@ function root(router) {
                     .length}`
                 );
               });
+              return investment;
             });
             console.log(`end of if`);
           }
