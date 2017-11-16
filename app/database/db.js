@@ -1,4 +1,7 @@
 import mongoose from "mongoose";
+import bluebird from "bluebird";
+
+mongoose.Promise = bluebird;
 
 const uristring = process.env.MONGODB_URI;
 const connectToDatabase = () => {

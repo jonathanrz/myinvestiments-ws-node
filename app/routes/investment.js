@@ -1,5 +1,6 @@
 import moment from "moment";
 import Investment from "../models/investment";
+import Income from "../models/income";
 
 function validate_request(req) {
   const body = req.body;
@@ -26,7 +27,29 @@ function root(router) {
       Investment.find((err, investments) => {
         if (err) res.send(err);
 
-        return res.json(investments);
+        const queriesPromises = [];
+
+        if (req.query.with_incomes) {
+          investments = investments.map(investment => {
+            const newInvestment = investment.toSimpleObject();
+            const queryPromise = Income.find({
+              investment: newInvestment._id
+            }).exec();
+            queriesPromises.push(queryPromise);
+            queryPromise.then(incomes => {
+              newInvestment.incomes = incomes;
+            });
+            return newInvestment;
+          });
+        }
+
+        Promise.all(queriesPromises).then(() => {
+          res.json(investments);
+        });
+
+        return false;
+      }).catch(err => {
+        res.send(err);
       });
     })
     .post((req, res) => {
