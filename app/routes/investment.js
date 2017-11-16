@@ -24,47 +24,35 @@ function root(router) {
   router
     .route("/investments")
     .get((req, res) => {
-      Investment.find()
-        .exec((err, investments) => {
-          if (err) res.send(err);
+      Investment.find((err, investments) => {
+        if (err) res.send(err);
 
+        if (req.query.with_incomes) {
           const queriesPromises = [];
 
-          console.log(`with_incomes=${req.query.with_incomes}`);
-          console.log(`query=${req.query}`);
-          console.log(`params=${req.params}`);
-          if (req.query.with_incomes) {
-            console.log(`inside if`);
-            investments = investments.map(investment => {
-              const newInvestment = investment.toSimpleObject();
-              newInvestment.a = "a";
-              console.log(`investment=${newInvestment.name}`);
-              const queryPromise = Income.find({
-                investment: newInvestment._id
-              }).exec();
-              queriesPromises.push(queryPromise);
-              queryPromise.then(incomes => {
-                newInvestment.incomes = incomes;
-                console.log(
-                  `investment=${newInvestment.name} incomes=${newInvestment
-                    .incomes.length}`
-                );
-              });
-              return newInvestment;
+          investments = investments.map(investment => {
+            const newInvestment = investment.toSimpleObject();
+            const queryPromise = Income.find({
+              investment: newInvestment._id
+            }).exec();
+            queriesPromises.push(queryPromise);
+            queryPromise.then(incomes => {
+              newInvestment.incomes = incomes;
             });
-            console.log(`end of if`);
-          }
+            return newInvestment;
+          });
 
-          console.log(`promises=${queriesPromises.length}`);
           Promise.all(queriesPromises).then(() => {
-            console.log(`incomes=${investments[0].incomes.length}`);
             res.json(investments);
           });
-          return false;
-        })
-        .catch(err => {
-          res.send(err);
-        });
+        } else {
+          res.json(investments);
+        }
+
+        return false;
+      }).catch(err => {
+        res.send(err);
+      });
     })
     .post((req, res) => {
       const investment = new Investment();
