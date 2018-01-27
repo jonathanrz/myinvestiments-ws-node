@@ -17,10 +17,11 @@ function parse_request(income, investment, body) {
   income.date = moment(body.date, "MM/YYYY");
   income.quantity = body.quantity;
   income.value = body.value;
-  income.bought = body.bought;
-  income.gross = body.gross;
-  income.ir = body.ir;
-  income.fee = body.fee;
+  income.bought = body.bought || 0;
+  income.sold = body.sold || 0;
+  income.gross = body.gross || 0;
+  income.ir = body.ir || 0;
+  income.fee = body.fee || 0;
 }
 
 function root(router) {
