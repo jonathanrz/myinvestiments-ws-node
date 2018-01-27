@@ -6,6 +6,7 @@ const incomeSchema = new mongoose.Schema({
   quantity: Number,
   value: Number,
   bought: Number,
+  sold: Number,
   gross: Number,
   ir: Number,
   fee: Number
@@ -19,6 +20,11 @@ incomeSchema.methods.yield = function(originalValue) {
 
 incomeSchema.methods.boughtValue = function() {
   if (this.bought) return this.bought;
+  return 0;
+};
+
+incomeSchema.methods.soldValue = function() {
+  if (this.sold) return this.sold;
   return 0;
 };
 
